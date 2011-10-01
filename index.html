@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'></script>
+    <script type="text/javascript" src="jwplayer.js"></script>
+    <script>
+
+function play() {
+    try {
+        $('#stage').empty();
+        $('#stage').append("<div id='player'></player>");
+
+        var url = $('#url').val();
+        var stream = $('#stream').val();
+        var player = jwplayer('player');
+
+        player.setup({
+            'flashplayer': 'player.swf',
+            'id': 'player',
+            'width': 640,
+            'height': 360,
+            'autoplay': true,
+            'streamer': url,
+            'file': stream
+        });
+    } catch (err) {
+        console.log('oh oh');
+        console.log(err);
+    }
+
+    return false;
+}
+
+    </script>
+</head>
+
+<body>
+
+<form onsubmit="return play();">
+    <label for="url">url</label><input type="text" name="url" id="url" value="rtmp://my.web.server/live/tv"/>
+    <label for="stream">stream</label><input type="text" name="stream" id="stream" value="mp4:abcnews"/>
+    <input type="submit" value="play"/>
+</form>
+
+<div id='stage'></div>
+
+</body>
+
+</html>
